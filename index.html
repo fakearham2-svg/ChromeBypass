@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090d1b">
+  <meta name="description" content="A local APK file checker for Chromebook.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <title>ChromeBypass — APK Checker</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090d1b;--panel:#141d33;--line:#293654;--purple:#9275ff;--text:#f4f6ff;--muted:#aab4cc}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#1c2450 0,var(--bg) 55%);color:var(--text);font:16px/1.5 system-ui,sans-serif;display:grid;place-items:center;padding:24px}
+    main{width:min(100%,560px)}header{text-align:center;margin-bottom:24px}.logo{font-size:42px}h1{margin:4px 0;font-size:clamp(28px,7vw,40px)}header p,.muted{color:var(--muted)}
+    .panel{background:rgba(20,29,51,.94);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 18px 60px #0006}
+    .drop{display:block;border:2px dashed #59658a;border-radius:16px;padding:28px 16px;text-align:center;cursor:pointer;background:#0d1428}
+    .drop:focus-within,.drop:hover{border-color:var(--purple)}input{display:block;width:100%;margin-top:16px;color:var(--muted)}
+    .result{display:none;margin-top:18px;border:1px solid var(--line);border-radius:14px;padding:16px}.result.show{display:block}
+    dl{display:grid;grid-template-columns:110px 1fr;gap:8px;margin:14px 0 0}dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}
+    .notice{margin-top:18px;padding:14px;border-radius:12px;background:#302719;border:1px solid #69502c;color:#ffe3ad;font-size:14px}
+    .status{font-weight:650}.ok{color:#70e2b3}.bad{color:#ffb86b}
+    button{margin-top:16px;border:0;border-radius:12px;padding:12px 16px;background:var(--purple);color:white;font-weight:700;font-size:15px;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}
+    footer{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
+  </style>
+</head>
+<body>
+<main>
+  <header><div class="logo" aria-hidden="true">📦</div><h1>ChromeBypass</h1><p>APK file checker for Chromebook</p></header>
+  <section class="panel">
+    <label class="drop" for="apk">
+      <strong>Choose an APK file</strong><br>
+      <span class="muted">Select a file stored on this device</span>
+      <input id="apk" type="file" accept=".apk,application/vnd.android.package-archive">
+    </label>
+    <section id="result" class="result" aria-live="polite">
+      <div id="status" class="status"></div>
+      <dl>
+        <dt>File</dt><dd id="name">—</dd>
+        <dt>Size</dt><dd id="size">—</dd>
+        <dt>Format check</dt><dd id="format">—</dd>
+        <dt>SHA-256</dt><dd id="hash">Calculating…</dd>
+      </dl>
+      <button id="clear" type="button">Choose another file</button>
+    </section>
+    <div class="notice"><strong>Important:</strong> This tool checks a file locally. It cannot install APKs or bypass ChromeOS security restrictions. Use ChromeOS-supported installation options, such as Google Play, where available.</div>
+  </section>
+  <footer>Files stay in your browser and are not uploaded by this page.</footer>
+</main>
+<script src="./app.js" defer></script>
+</body>
+</html>
